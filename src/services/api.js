@@ -27,6 +27,11 @@ export const fetchMovieCast = async movieId => {
   return data;
 };
 
-// export const getSearchMovies = async () => {};
+export const fetchSearchMovies = async query => {
+  const { data } = await axios.get(
+    `search/movie?api_key=${API_KEY}&query=${query}`
+  );
+  return data;
+};
 
 // 'https://api.themoviedb.org/3/trending/movie/day?api_key=70eafbb012dbe333280578c5b5998c9b'

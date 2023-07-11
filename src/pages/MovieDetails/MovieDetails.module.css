@@ -1,0 +1,19 @@
+.movie {
+  margin-left: 30px;
+}
+
+.poster {
+  border-radius: 5px;
+  box-shadow: 5cqmax;
+}
+
+.backBtn {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.link {
+  margin-right: 20px;
+  text-decoration: none;
+  font-size: 20px;
+}

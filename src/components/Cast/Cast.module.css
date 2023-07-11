@@ -1,0 +1,30 @@
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  list-style: none;
+}
+
+.cardItem {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  text-align: center;
+  background-color: lightgray;
+}
+
+.actorImg {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.actorName {
+  font-size: large;
+  font-weight: bold;
+}
+
+.cardItem p {
+  margin: 10px 0;
+}

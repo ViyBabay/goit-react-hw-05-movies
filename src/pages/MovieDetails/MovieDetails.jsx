@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate, useParams } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/api';
+import defaultImage from '../../components/NotFoundImg/pngwing.com.png';
+import s from './MovieDetails.module.css';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -16,22 +18,38 @@ const MovieDetails = () => {
   };
 
   return (
-    <div>
-      <button onClick={handleBackBtn}>Go back</button>
+    <div className={s.movie}>
+      <button className={s.backBtn} onClick={handleBackBtn}>
+        Go back
+      </button>
       <br />
       <img
-        src={`https://image.tmdb.org/t/p/w500/${film.poster_path} `}
+        className={s.poster}
+        src={
+          film.poster_path
+            ? `https://image.tmdb.org/t/p/w300/${film.poster_path}`
+            : defaultImage
+        }
         alt={film.title}
       />
-      <h1>{film.title}</h1>
-      <p>User score: </p>
+      <h1>
+        {film.title} ({film.release_date})
+      </h1>
+      <p>User score: {film.vote_average * 0.1 * 100} %</p>
       <h2>Overview: </h2>
       <p>{film.overview}</p>
-      <h2>Genres: </h2>
-      <p></p>
+      <p>
+        <span>Genres: </span>
+        {film.genres && film.genres.map(genre => genre.name).join(', ')}
+      </p>
+      <hr />
       <h3>Additional information</h3>
-      <Link to={`/movies/${movieId}/cast`}>Cast</Link>
-      <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
+      <NavLink to={`/movies/${movieId}/cast`} className={s.link}>
+        Cast
+      </NavLink>
+      <NavLink to={`/movies/${movieId}/reviews`} className={s.link}>
+        Reviews
+      </NavLink>
       <Outlet />
     </div>
   );

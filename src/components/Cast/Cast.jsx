@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieCast } from 'services/api';
+import defaultImage from '../NotFoundImg/pngwing.com.png';
+import s from './Cast.module.css';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -10,14 +12,19 @@ const Cast = () => {
   }, [movieId]);
   return (
     <div>
-      <ul>
+      <ul className={s.cards}>
         {cast.map(actor => (
-          <li key={actor.id}>
+          <li key={actor.id} className={s.cardItem}>
             <img
-              src={`https://image.tmdb.org/t/p/w200/${actor.profile_path} `}
+              className={s.actorImg}
+              src={
+                actor.profile_path
+                  ? `https://image.tmdb.org/t/p/w200/${actor.profile_path}`
+                  : defaultImage
+              }
               alt={actor.name}
             />
-            <p>{actor.name}</p>
+            <p className={s.actorName}>{actor.name}</p>
             <p>Character: {actor.character}</p>
           </li>
         ))}
