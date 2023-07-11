@@ -33,7 +33,7 @@ const MovieDetails = () => {
         alt={film.title}
       />
       <h1>
-        {film.title} ({film.release_date})
+        {film.title} ({film.release_date && film.release_date.substring(0, 4)})
       </h1>
       <p>User score: {film.vote_average * 0.1 * 100} %</p>
       <h2>Overview: </h2>
